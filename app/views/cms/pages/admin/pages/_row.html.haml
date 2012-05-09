@@ -1,0 +1,13 @@
+- @pages.find_all{|p| p.parent_id == parent_id}.each do |page|
+  %tr{:class => "#{'muted' unless page.active?}"}
+    %td
+      = ("&mdash;&nbsp;"*page.level).html_safe
+      = page.url
+    %td= page.title
+    %td= (page.active?) ? 'Да' : 'Нет'
+    %td
+      %div.btn-group(data-toggle="buttons-radio")
+        = link_to 'Добавить страницу', new_admin_page_path(:page => {:parent_id => page.id}), :class => 'btn btn-success btn-mini'
+        = link_to 'Редактировать', edit_admin_page_path(page), :class => 'btn btn-warning btn-mini'
+        = link_to 'Удалить', admin_page_path(page), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger btn-mini'
+  = render :partial => 'row', :locals => {:parent_id => page.id}

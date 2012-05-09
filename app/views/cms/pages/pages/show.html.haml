@@ -1,0 +1,8 @@
+- if lookup_context.template_exists?("cms/pages#{@page.url}", [], true)
+  = render :partial => "cms/pages#{@page.url}"
+- else
+  - siblings = (@page.parent_id.nil?) ? @page.children.ordered : (@page.siblings + [@page]).sort{|a,b| a.lft <=> b.lft}
+
+  %h1= @page.title
+
+  = @page.body.html_safe

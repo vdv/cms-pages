@@ -1,0 +1,49 @@
+= form_for @page, :url => ((@page.new_record?) ? admin_pages_url : admin_page_url(@page)), :html => {:class => 'form-horizontal'}  do |f|
+  -if @page.errors.any?
+    .alert.alert-error
+      %ul
+        - @page.errors.full_messages.each do |msg|
+          %li= msg
+  
+  .control-group
+    = f.label :parent_id, 'Родительская страница', :class => 'control-label'
+    .controls
+      = f.select :parent_id, options_for_pages, :class => 'input x-large'
+
+  .control-group
+    = f.label :url, :class => 'control-label'
+    .controls
+      .input-prepend
+        %span.add-on http://vipag.ru/
+        = f.text_field :url, :class => 'text_field'
+
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'text_field'
+  
+  %div(style="float:left")
+    .control-group
+      = f.label :active, :class => 'control-label'
+      .controls
+        = f.check_box :active
+
+  .clearfix
+
+  .control-group
+    = f.label :body, :class => 'control-label'
+    .controls
+      = f.text_area :body, :class => 'text_field wymeditor'
+
+  .form-actions
+    = f.button 'Сохранить', :type => :submit, :class => 'btn btn-primary wymupdate'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_pages_path, :class => 'btn'
+
+
+  / .well
+  /   #page_images.clearfix
+    
+    
+  -#= images_uploader(:download_id => '#page_images', :input_name => 'image_ids[]', :target => Page.new, :autosave => true)
+
+-#= wyminit
