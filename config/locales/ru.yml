@@ -1,0 +1,19 @@
+ru:
+  helpers:
+    links:
+      cancel: Отмена
+  cms:
+    pages:
+      admin:
+        pages:
+          form:
+            cancel: Отмена
+  activerecord:
+    models:
+      cms:
+        page: Страница
+    attributes:
+      cms:
+        page:
+          url: URL
+          title: Заголовок

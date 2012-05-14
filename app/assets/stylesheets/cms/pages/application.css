@@ -9,5 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require file_upload/jquery.fileupload-ui
+ *= require cms/pages/pages
 */
